@@ -24,3 +24,15 @@ export async function POST(request: NextRequest, response: NextResponse) {
     );
   }
 }
+
+export async function DELETE(request: NextRequest, response: NextResponse) {
+  const json = await request.json();
+  await WordModel.deleteOne({ _id: json.id });
+  return new Response(
+    JSON.stringify({
+      code: 200,
+      data: null,
+      msg: "ok",
+    })
+  );
+}
